@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      background:#111;
+    }
+  </style>
+</head>
+<body>
+  <script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
+<div class="commonninja_component pid-bcb53617-3428-4703-a8de-02d2326b409f"></div>
+  <script>
+const o = new MutationObserver(() => {
+  const banner =
+  document.querySelector('.commonninja-ribbon');
+  if (banner !== null)
+    banner?.remove()
+})
+o.observe(document.documentElement, 
+          {childList:true, subtree: true}
+         )
+  document.querySelector('.commonninja-ribbon')?.remove()
+  </script>
+</body>
+</html>
