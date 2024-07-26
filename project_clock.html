@@ -6,25 +6,70 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Project Clock</title>
   <style>
-    html {
-      background:#111;
+    body, html {
+  margin: 0;
+  height:100vh;
+  background:#112;
+  color: white;
+}
+.main-container {
+  --cell-size: 30rem;
+  padding: 0.5rem;
+  gap:0.5rem;
+  display:grid;
+  grid-template-columns:repeat(auto-fill, minmax(var(--cell-size), 1fr));
+  .cell {
+    background:#222;
+    aspect-ratio: 16 / 9;
+    display: grid;
+    place-content: center;
+    .time {
+      font-size: 4rem;
     }
+  }
+}
   </style>
 </head>
 <body>
-<script src="https://cdn.commoninja.com/sdk/latest/commonninja.js" defer></script>
-<div class="commonninja_component pid-bcb53617-3428-4703-a8de-02d2326b409f"></div>
-  <script>
-const o = new MutationObserver(() => {
-  const banner =
-  document.querySelector('.commonninja-ribbon');
-  if (banner !== null)
-    banner?.remove()
-})
-o.observe(document.documentElement, 
-          {childList:true, subtree: true}
-         )
-  document.querySelector('.commonninja-ribbon')?.remove()
+  <div class="main-container">
+  <div class="cell">
+    <span class="name">The...Why...Even...How?</span>
+    <span class="time" offset="-5"></span>
+  </div>
+  <div class="cell">
+    <span class="name">_Russian__Youtube_</span>
+    <span class="time" offset="2"></span>
+  </div>
+  <div class="cell">
+    <span class="name">Jaai</span>
+    <span class="time" offset="5.5"></span>
+  </div>
+  <div class="cell">
+    <span class="name">Johnny Jail Bait</span>
+    <span class="time"></span>
+  </div>
+</div>
+  <script type="module">
+    import dayjs from "https://esm.sh/dayjs";
+    import UTC from "https://esm.sh/dayjs-plugin-utc";
+    dayjs.extend(UTC)
+    function renderTime(el) {
+      el.textContent = dayjs().utc().utcOffset(
+        Number(
+          el.getAttribute('offset')
+        )
+      ).format('hh:mm a')
+    }
+    function registerCallback(el) {
+      const c = () => {
+        renderTime(el)
+        requestAnimationFrame(c)
+      }
+      requestAnimationFrame(c)
+    }
+    for (const el of document.querySelectorAll('.time')) {
+      registerCallback(el)
+    }
   </script>
 </body>
 </html>
