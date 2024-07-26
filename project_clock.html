@@ -39,42 +39,20 @@
   <div class="main-container">
   <div class="cell">
     <span class="name">The...Why...Even...How?</span>
-    <span class="time" offset="-5"></span>
+    <custom-clock offset="-5"></custom-clock>
   </div>
   <div class="cell">
-    <span class="name">Johnny Jail Bait</span>
-    <span class="time" offset="2"></span>
-  </div>
-  <div class="cell">
-    <span class="name">_Russian__Youtube_</span>
-    <span class="time" offset="2"></span>
+    <span class="name">_Russian__Youtube_, Johnny Jail Bait</span>
+    <custom-clock offset="2"></custom-clock>
   </div>
   <div class="cell">
     <span class="name">Jaai</span>
-    <span class="time" offset="5.5"></span>
+    <custom-clock offset="5.5"></custom-clock>
   </div>
 </div>
   <script type="module">
-    import dayjs from "https://esm.sh/dayjs";
-    import UTC from "https://esm.sh/dayjs-plugin-utc";
-    dayjs.extend(UTC)
-    function renderTime(el) {
-      el.textContent = dayjs().utc().utcOffset(
-        Number(
-          el.getAttribute('offset')
-        )
-      ).format('hh:mm a')
-    }
-    function registerCallback(el) {
-      const c = () => {
-        renderTime(el)
-        requestAnimationFrame(c)
-      }
-      requestAnimationFrame(c)
-    }
-    for (const el of document.querySelectorAll('.time')) {
-      registerCallback(el)
-    }
+   import {define} from '../clock.js';
+    define()
   </script>
 </body>
 </html>
