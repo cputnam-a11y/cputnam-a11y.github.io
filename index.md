@@ -1,0 +1,1 @@
+hi, i'm cputnam-a11y. i tend to go by different names on every platform i use as that is what middle school me thought was cool. i enjoy modding minecraft, breaking other people's code, and exploiting poorly written language runtimes. if you would like to see my work, you can check out [my github](https://github.com/cputnam-a11y/).
